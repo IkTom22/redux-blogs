@@ -12,6 +12,8 @@ class PostList extends React.Component {
         return <div>Post List</div>
     }
 }
+// any time you want to get data from redux side into react side, you always have to define map--- 
+//(state) id from redux store
 const mapStateToProps = (state) => {
     return { posts: state.posts };
 }
