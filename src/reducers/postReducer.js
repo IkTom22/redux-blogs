@@ -1,14 +1,14 @@
-export default (state, action) => {
-    //BAD!!
-    // return document.querySelector('#input')
-    // BAD!!
-    //return axios.get('/posts')
-    //BAD!!
-    // state[0] = 'Sam; or state.name= 'Sam'
-    // state.pop();
-
-    //GOOD!!
-    // return state + action
-    return 123;
-
+export default (state = [], action) => {
+    // Rather than having a if statemen, often use switch statement
+    // if (action.type === 'FETCH_POST') {
+    //     return action.payload;
+    // }
+    // return state;
+    //switch is a varid javascript code
+    switch (action.type) {
+        case 'FETCH_POSTS':
+            return action.payload;
+        default:
+            return state;
+    }
 };
