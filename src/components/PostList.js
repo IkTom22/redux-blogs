@@ -7,9 +7,26 @@ class PostList extends React.Component {
     componentDidMount() {
         this.props.fetchPosts();
     }
+    // in order to make the render method nice and easy, create the renderList() 
+    // every post return in the map method below, it returns a good jsx 
+    renderList() {
+        return this.props.posts.map(post => {
+            return (
+                <div className="item" key={post.id}>
+                    <i className="large middle aligned icon user" />s
+                    <div className="content">
+                        <div className="description">
+                            <h2>{post.title}</h2>
+                            <p> {post.body}</p>
+                        </div>
+                    </div>
+                </div>
+            );
+        })
+    }
     render() {
-        console.log(this.props.posts);
-        return <div>Post List</div>
+        // console.log(this.props.posts);
+        return <div className="ui relaxed divided list">{this.renderList()}</div>
     }
 }
 // any time you want to get data from redux side into react side, you always have to define map--- 
