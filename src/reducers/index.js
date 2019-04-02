@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-
+import postReducer from './postReducer';
 export default combineReducers({
     //create a dummy key
-    replaceMe: () => 'hi there'
+    posts: postReducer
 });
