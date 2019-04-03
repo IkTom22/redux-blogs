@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import jsonPlaceHolder from '../apis/jsonPlaceHolder';
 
 export const fetchPosts = () => async dispatch => {
@@ -6,10 +7,21 @@ export const fetchPosts = () => async dispatch => {
 };
 
 
-export const fetchUser = (id) => async dispatch => {
+export const fetchUser = (id) => dispatch => _fetchUser(id, dispatch);
+//THIS IS A SOLUTION BUT NOT THE BEST SOLUTION
+const _fetchUser = _.memoize(async (id, dispatch) => {
     const response = await jsonPlaceHolder.get(`/users/${id}`)
-    dispatch({ type: 'FETCH_USER', payload: response.data })
-}
+    dispatch({ type: 'FETCH_USER', payload: response.data });
+});
+//THIS DOES NOT WORK
+// export const fetchUser = function (id) {
+//     return _.memoize(async function (dispatch) {
+//         const response = await jsonPlaceHolder.get(`/users/${id}`)
+//         dispatch({ type: 'FETCH_USER', payload: response.data })
+//     });
+// };
+
+
 // EXPLANATION ABOVE
 //with redux thunk, ou can retun function
     //only returning one expression we are immediatly returning so don't even need to write 'return'
