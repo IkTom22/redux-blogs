@@ -6,13 +6,20 @@ export const fetchPosts = () => async dispatch => {
     dispatch({ type: 'FETCH_POSTS', payload: response.data })
 };
 
+// export const fetchUser = id => async dispatch => {
+//     const response = await jsonPlaceHolder.get(`/users/${id}`);
+//     dispatch({ type: 'FETCH_USER', payload: response.data });
+// };
 
-export const fetchUser = (id) => dispatch => _fetchUser(id, dispatch);
-//THIS IS A SOLUTION BUT NOT THE BEST SOLUTION
+// Solution 1 - side affect: you can't update the user so it is not the best solution
+export const fetchUser = id => dispatch => {
+    _fetchUser(id, dispatch);
+};
 const _fetchUser = _.memoize(async (id, dispatch) => {
-    const response = await jsonPlaceHolder.get(`/users/${id}`)
+    const response = await jsonPlaceHolder.get(`/users/${id}`);
     dispatch({ type: 'FETCH_USER', payload: response.data });
 });
+
 //THIS DOES NOT WORK
 // export const fetchUser = function (id) {
 //     return _.memoize(async function (dispatch) {
