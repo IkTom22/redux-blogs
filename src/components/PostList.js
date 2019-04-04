@@ -1,12 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchPosts } from '../actions';
+import { fetchPostsAndUsers } from '../actions';
 import UserHeader from './UserHeader';
+
 
 
 class PostList extends React.Component {
     componentDidMount() {
-        this.props.fetchPosts();
+        // this.props.fetchPosts();
+        this.props.fetchPostsAndUsers();
     }
     // in order to make the render method nice and easy, create the renderList() 
     // every post return in the map method below, it returns a good jsx 
@@ -40,5 +42,5 @@ const mapStateToProps = (state) => {
 // first argument is always mapStateToProps and secont argument is action creater
 export default connect(
     mapStateToProps,
-    { fetchPosts }
+    { fetchPostsAndUsers }
 )(PostList);
